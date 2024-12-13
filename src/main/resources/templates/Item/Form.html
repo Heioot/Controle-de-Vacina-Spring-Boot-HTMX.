@@ -1,0 +1,27 @@
+<!-- form.html - Formulário de Item -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulário de Item</title>
+</head>
+<body>
+    <h1 th:text="${item.id == null ? 'Novo Item' : 'Editar Item'}"></h1>
+    <form th:action="@{/itens}" th:object="${item}" method="post">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" th:field="*{descricao}" required>
+        <br>
+        <label for="plano">Plano:</label>
+        <select id="plano" name="plano" th:field="*{plano}" required>
+            <option th:each="plano : ${planos}" th:value="${plano}" th:text="${plano.id}"></option>
+        </select>
+        <br>
+        <label for="equipamento">Equipamento:</label>
+        <select id="equipamento" name="equipamento" th:field="*{equipamento}" required>
+            <option th:each="equipamento : ${equipamentos}" th:value="${equipamento}" th:text="${equipamento.nome}"></option>
+        </select>
+        <br>
+        <button type="submit">Salvar</button>
+        <a href="/itens">Cancelar</a>
+    </form>
+</body>
+</html>

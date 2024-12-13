@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Planos</title>
+</head>
+<body>
+    <h1>Lista de Planos</h1>
+    <a href="/planos/novo">Novo Plano</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Dificuldade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="plano : ${planos}">
+                <td th:text="${plano.id}"></td>
+                <td th:text="${plano.dificuldade}"></td>
+                <td>
+                    <a th:href="@{/planos/editar/{id}(id=${plano.id})}">Editar</a>
+                    <a th:href="@{/planos/deletar/{id}(id=${plano.id})}" onclick="return confirm('Tem certeza que deseja excluir este plano?');">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Equipamentos</title>
+</head>
+<body>
+    <h1>Lista de Equipamentos</h1>
+    <a href="/equipamentos/novo">Novo Equipamento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="equipamento : ${equipamentos}">
+                <td th:text="${equipamento.id}"></td>
+                <td th:text="${equipamento.nome}"></td>
+                <td th:text="${equipamento.descricao}"></td>
+                <td>
+                    <a th:href="@{/equipamentos/editar/{id}(id=${equipamento.id})}">Editar</a>
+                    <a th:href="@{/equipamentos/deletar/{id}(id=${equipamento.id})}" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

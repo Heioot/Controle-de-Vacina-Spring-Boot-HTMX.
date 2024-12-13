@@ -1,0 +1,34 @@
+<!-- list.html - Listagem de Itens -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Itens</title>
+</head>
+<body>
+    <h1>Lista de Itens</h1>
+    <a href="/itens/novo">Novo Item</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Plano</th>
+                <th>Equipamento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${itens}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.descricao}"></td>
+                <td th:text="${item.plano.id}"></td>
+                <td th:text="${item.equipamento.nome}"></td>
+                <td>
+                    <a th:href="@{/itens/editar/{id}(id=${item.id})}">Editar</a>
+                    <a th:href="@{/itens/deletar/{id}(id=${item.id})}" onclick="return confirm('Tem certeza que deseja excluir este item?');">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

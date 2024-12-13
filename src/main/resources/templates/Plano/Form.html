@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulário de Plano</title>
+</head>
+<body>
+    <h1 th:text="${plano.id == null ? 'Novo Plano' : 'Editar Plano'}"></h1>
+    <form th:action="@{/planos}" th:object="${plano}" method="post">
+        <label for="dificuldade">Dificuldade:</label>
+        <select id="dificuldade" name="dificuldade" th:field="*{dificuldade}">
+            <option value="FACIL">Fácil</option>
+            <option value="MEDIO">Médio</option>
+            <option value="DIFICIL">Difícil</option>
+        </select>
+        <br>
+        <button type="submit">Salvar</button>
+        <a href="/planos">Cancelar</a>
+    </form>
+</body>
+</html>
