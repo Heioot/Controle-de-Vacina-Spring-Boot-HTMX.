@@ -17,6 +17,16 @@ public class Equipamento {
 
     private String descricao;
 
+    private Status status = Status.ATIVO;
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     // Getters e Setters
     public Long getId() {
         return id;

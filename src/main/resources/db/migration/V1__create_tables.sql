@@ -5,15 +5,17 @@ CREATE TABLE cliente (
 
 CREATE TABLE plano (
     id BIGSERIAL PRIMARY KEY,
-    dificuldade VARCHAR(10) NOT NULL,
+    dificuldade VARCHAR(15) NOT NULL DEFAULT 'NAO_DEFINIDO',
     cliente_id BIGINT UNIQUE,
     CONSTRAINT fk_cliente_plano FOREIGN KEY (cliente_id) REFERENCES cliente (id)
 );
 
+
 CREATE TABLE equipamento (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    descricao TEXT
+    descricao TEXT,
+    status TEXT DEFAULT 'ATIVO'
 );
 
 CREATE TABLE item (

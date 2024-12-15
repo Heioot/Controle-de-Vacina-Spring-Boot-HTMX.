@@ -1,5 +1,5 @@
 package web.controleacademia.model;
 
 public enum Dificuldade {
-    FACIL, MEDIO, DIFICIL;
+    NAO_DEFINIDO, FACIL, MEDIO, DIFICIL;
 }
