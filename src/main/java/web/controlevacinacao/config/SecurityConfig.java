@@ -30,6 +30,7 @@ public class SecurityConfig {
                         // URLs
                         .requestMatchers("/vacinas/cadastrar").hasRole("ADMIN")
                         .requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
+                        .requestMatchers("/equipamentos/cadastrar").hasRole("ADMIN")
                         // .requestMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
                         .anyRequest().permitAll())
                 .formLogin(form -> form
