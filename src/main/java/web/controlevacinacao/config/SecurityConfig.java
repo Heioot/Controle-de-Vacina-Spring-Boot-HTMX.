@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,14 +24,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable()) // Desabilita o CSRF
                 .authorizeHttpRequests(configurer -> configurer
                         // Qualquer um pode fazer requisições para essas URLs
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/", "/index.html").permitAll()
                         // Um usuário autenticado e com o papel ADMIN pode fazer requisições para essas
                         // URLs
                         .requestMatchers("/vacinas/cadastrar").hasRole("ADMIN")
+                        .requestMatchers("/vacinas/remover").hasRole("ADMIN")
+                        .requestMatchers("/vacinas/abriralterar").hasRole("ADMIN")
                         .requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
                         .requestMatchers("/equipamentos/cadastrar").hasRole("ADMIN")
+                        .requestMatchers("/equipamentos/remover").hasRole("ADMIN")
+                        .requestMatchers("/equipamentos/abriralterar").hasRole("ADMIN")
                         // .requestMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
                         .anyRequest().permitAll())
                 .formLogin(form -> form

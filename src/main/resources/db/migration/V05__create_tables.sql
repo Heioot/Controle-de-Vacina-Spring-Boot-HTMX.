@@ -12,7 +12,7 @@ CREATE TABLE plano (
 
 
 CREATE TABLE equipamento (
-    id BIGSERIAL PRIMARY KEY,
+    codigo BIGSERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     descricao TEXT,
     status TEXT DEFAULT 'ATIVO'
@@ -24,5 +24,5 @@ CREATE TABLE item (
     plano_id BIGINT,
     equipamento_id BIGINT,
     CONSTRAINT fk_plano_item FOREIGN KEY (plano_id) REFERENCES plano (id),
-    CONSTRAINT fk_equipamento_item FOREIGN KEY (equipamento_id) REFERENCES equipamento (id)
+    CONSTRAINT fk_equipamento_item FOREIGN KEY (equipamento_id) REFERENCES equipamento (codigo)
 );

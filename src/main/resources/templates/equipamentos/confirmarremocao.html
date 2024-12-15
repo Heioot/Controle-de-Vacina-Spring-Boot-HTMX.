@@ -13,7 +13,7 @@
       <h1 class="text-xl mt-10 ml-10">Você têm certeza que quer remover o equipamento?</h1>
 
       <div class="mt-10 ml-10">
-        <h2 th:text="'Id: ' + ${equipamento.id}"></h2>
+        <h2 th:text="'Codigo: ' + ${equipamento.codigo}"></h2>
         <h2 th:text="'Nome: ' + ${equipamento.nome}"></h2>
         <h2 th:text="'Descrição: ' + ${equipamento.descricao}"></h2>
       </div>
@@ -22,8 +22,8 @@
         <form th:hx-get="@{/equipamentos/pesquisar}" hx-target="#main" hx-swap="outerHTML">
           <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Voltar</button>
         </form>
-        <form th:hx-post="@{/vacinas/remover}" hx-target="#main" hx-swap="outerHTML" class="ml-10">
-          <input type="hidden" name="id" th:value="${equipamento.id}" />
+        <form th:hx-post="@{/equipamentos/remover}" hx-target="#main" hx-swap="outerHTML" class="ml-10">
+          <input type="hidden" name="codigo" th:value="${equipamento.codigo}" />
           <input type="hidden" name="nome" th:value="${equipamento.nome}" />
           <input type="hidden" name="descricao" th:value="${equipamento.descricao}" />
           <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none">Remover</button>

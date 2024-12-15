@@ -40,8 +40,8 @@ public class EquipamentoQueriesImpl implements EquipamentoQueries {
         Predicate[] predArray;
         Predicate[] predArrayTotal;
 
-        if (filtro.getId() != null) {
-            predicateList.add(builder.equal(e.<Long>get("id"), filtro.getId()));
+        if (filtro.getCodigo() != null) {
+            predicateList.add(builder.equal(e.<Long>get("id"), filtro.getCodigo()));
         }
         if (StringUtils.hasText(filtro.getNome())) {
             predicateList.add(builder.like(builder.lower(e.<String>get("nome")),
@@ -71,8 +71,8 @@ public class EquipamentoQueriesImpl implements EquipamentoQueries {
         Root<Equipamento> eTotal = criteriaQueryTotal.from(Equipamento.class);
         criteriaQueryTotal.select(builder.count(eTotal));
 
-        if (filtro.getId() != null) {
-            predicateListTotal.add(builder.equal(eTotal.<Long>get("id"), filtro.getId()));
+        if (filtro.getCodigo() != null) {
+            predicateListTotal.add(builder.equal(eTotal.<Long>get("id"), filtro.getCodigo()));
         }
         if (StringUtils.hasText(filtro.getNome())) {
             predicateListTotal.add(builder.like(builder.lower(eTotal.<String>get("nome")),

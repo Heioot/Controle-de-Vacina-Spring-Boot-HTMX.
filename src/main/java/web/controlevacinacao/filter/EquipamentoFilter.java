@@ -2,18 +2,18 @@ package web.controlevacinacao.filter;
 
 public class EquipamentoFilter {
 
-    private Long id;
+    private Long codigo;
     private String nome;
     private String descricao;
     private String status;
 
     // Getters e Setters
-    public Long getId() {
-        return id;
+    public Long getCodigo() {
+        return codigo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -42,6 +42,6 @@ public class EquipamentoFilter {
 
     @Override
     public String toString() {
-        return "id: " + id + "\nnome: " + nome + "\ndescricao: " + descricao + "\nstatus: " + status;
+        return "Codigo: " + codigo + "\nnome: " + nome + "\ndescricao: " + descricao + "\nstatus: " + status;
     }
 }
