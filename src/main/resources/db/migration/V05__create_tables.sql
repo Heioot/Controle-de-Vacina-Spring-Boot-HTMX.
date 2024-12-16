@@ -1,13 +1,8 @@
-CREATE TABLE cliente (
-    id BIGSERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE plano (
     id BIGSERIAL PRIMARY KEY,
     dificuldade VARCHAR(15) NOT NULL DEFAULT 'NAO_DEFINIDO',
-    cliente_id BIGINT UNIQUE,
-    CONSTRAINT fk_cliente_plano FOREIGN KEY (cliente_id) REFERENCES cliente (id)
+    usuario_id BIGINT UNIQUE,
+    CONSTRAINT fk_usuario_plano FOREIGN KEY (usuario_id) REFERENCES usuario (codigo)
 );
 
 

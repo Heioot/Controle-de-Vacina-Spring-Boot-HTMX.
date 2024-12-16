@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -49,6 +51,18 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "usuario_papel", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_papel"))
 	@Size(min = 1, message = "O usuário deve ter ao menos um papel no sistema")
 	private List<Papel> papeis = new ArrayList<>();
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Plano plano;
+
+
+	public Plano getPlano() {
+		return plano;
+	}
+
+	public void setPlano(Plano plano) {
+		this.plano = plano;
+	}
 
 	public Long getCodigo() {
 		return codigo;
