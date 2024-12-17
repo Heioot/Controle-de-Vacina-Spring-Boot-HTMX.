@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Cadastro de Plano</title>
+  </head>
+  <body>
+    <!-- Conteúdo principal -->
+    <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="flex flex-col w-full">
+      <h1 class="text-2xl mt-10 ml-10">Cadastro de Plano</h1>
+
+      <form th:hx-post="@{/planos/cadastrar}" hx-target="#main" hx-swap="outerHTML" th:object="${plano}" class="mt-5 ml-10">
+        <!-- Campo para selecionar Nome do Usuário -->
+        <div class="mb-5">
+          <label for="usuario" class="block text-sm font-medium text-gray-700">Nome do Usuário</label>
+          <select id="usuario" name="usuario" th:field="*{usuario}" class="block w-full mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <option value="" disabled selected>Selecione um usuário...</option>
+            <option th:each="usuario : ${usuarios}" th:value="${usuario.codigo}" th:text="${usuario.nomeUsuario}"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="block py-3 px-4 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none mt-5">
+          Cadastrar
+        </button>
+      </form>
+
+      <div th:if="${notificacao != null}" th:object="${notificacao}">
+        <input type="hidden" id="mensagem" th:value="*{mensagem}">
+        <input type="hidden" id="tipo" th:value="*{tipo}">
+        <input type="hidden" id="intervalo" th:value="*{intervalo}">
+      </div>
+
+      <div th:replace="~{layout/fragments/header :: usuariologinlogout}"></div>
+      <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
+    </main>
+    <!-- !Conteúdo principal -->
+  </body>
+</html>

@@ -1,6 +1,6 @@
 CREATE TABLE plano (
     id BIGSERIAL PRIMARY KEY,
-    dificuldade VARCHAR(15) NOT NULL DEFAULT 'NAO_DEFINIDO',
+    dificuldade VARCHAR(15) DEFAULT 'NAO_DEFINIDO',
     usuario_id BIGINT UNIQUE,
     CONSTRAINT fk_usuario_plano FOREIGN KEY (usuario_id) REFERENCES usuario (codigo)
 );

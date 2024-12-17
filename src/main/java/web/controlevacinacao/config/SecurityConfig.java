@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/equipamentos/cadastrar").hasRole("ADMIN")
                         .requestMatchers("/equipamentos/remover").hasRole("ADMIN")
                         .requestMatchers("/equipamentos/abriralterar").hasRole("ADMIN")
+                        .requestMatchers("/planos/cadastrar").hasRole("ADMIN")
                         // .requestMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
                         .anyRequest().permitAll())
                 .formLogin(form -> form

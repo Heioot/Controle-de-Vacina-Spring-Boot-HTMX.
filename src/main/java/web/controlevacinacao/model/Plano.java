@@ -2,7 +2,6 @@ package web.controlevacinacao.model;
 
 import jakarta.persistence.*;
 import java.util.*;
-import java.util.Objects;
 
 @Entity
 public class Plano {
@@ -12,6 +11,7 @@ public class Plano {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
     private Dificuldade dificuldade;
 
     @OneToOne
