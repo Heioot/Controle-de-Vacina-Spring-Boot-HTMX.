@@ -42,7 +42,7 @@
               />
             </svg>
             <!-- Texto -->
-            <a href="#" class="px-2 text-gray-400 hover:text-white">Ver Plano</a>
+            <a th:hx-get="@{/planos/cadastrar}" hx-target="#main" hx-swap="outerHTML" hx-push-url="true" class="cursor-pointer px-2 text-gray-400 hover:text-white">Criar Plano</a>
           </div>
           <!-- 2a Opcao -->
           <div class="flex items-center hover:text-white">
@@ -53,7 +53,7 @@
               />
             </svg>
             <!-- Texto -->
-            <a href="#" class="px-2 text-gray-400 hover:text-white">Criar Plano</a>
+            <a th:hx-get="@{/planos/cadastrar}" hx-target="#main" hx-swap="outerHTML" hx-push-url="true" class="cursor-pointer px-2 text-gray-400 hover:text-white">Ver Plano</a>
           </div>
         </div>
       </div>

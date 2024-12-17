@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Cadastro de Plano</title>
+  </head>
+  <body>
+    <!-- conteudo principal -->
+    <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="w-full">
+      <div class="m-10">
+        <div class="relative w-full">
+          <h1 class="text-3xl">Cadastro de Plano</h1>
+
+          <form th:hx-post="@{/planos/cadastrar}" hx-target="#main" hx-swap="outerHTML" th:object="${plano}">
+            <!-- Campo de Dificuldade -->
+            <div class="mb-4">
+              <label for="dificuldade" class="block text-gray-700 font-medium mb-2">Dificuldade</label>
+              <select th:field="*{dificuldade}" id="dificuldade" class="w-full border-gray-300 rounded-lg focus:ring-blue-500">
+                <option value="">Selecione...</option>
+                <option th:each="nivel : ${T(web.controlevacinacao.model.Dificuldade).values()}"
+                        th:value="${nivel}"
+                        th:text="${nivel}">Dificuldade</option>
+              </select>
+              <p th:if="${#fields.hasErrors('dificuldade')}" th:each="erro : ${#fields.errors('dificuldade')}" th:text="${erro}" class="text-sm text-red-600 mt-2"></p>
+            </div>
+
+            <!-- Campo de Usuário -->
+            <div class="mb-4">
+              <label for="usuario" class="block text-gray-700 font-medium mb-2">Usuário</label>
+              <select th:field="*{usuario.id}" id="usuario" class="w-full border-gray-300 rounded-lg focus:ring-blue-500">
+                <option value="">Selecione um usuário...</option>
+                <option th:each="user : ${usuarios}" 
+                        th:value="${user.id}" 
+                        th:text="${user.nome}">Usuário</option>
+              </select>
+              <p th:if="${#fields.hasErrors('usuario')}" th:each="erro : ${#fields.errors('usuario')}" th:text="${erro}" class="text-sm text-red-600 mt-2"></p>
+            </div>
+
+            <!-- Lista de Itens -->
+            <div class="mb-4">
+              <label class="block text-gray-700 font-medium mb-2">Itens</label>
+              <div th:each="item, stat : *{itens}">
+                <input type="text" th:field="*{itens[__${stat.index}__].nome}" placeholder="Nome do item"
+                       class="w-full border-gray-300 rounded-lg focus:ring-blue-500 mb-2" />
+                <button type="button" th:onclick="|this.closest('div').remove()|" class="text-red-600 text-sm">Remover</button>
+              </div>
+              <button type="button" th:onclick="adicionarItem()" class="text-blue-600 text-sm mt-2">Adicionar Item</button>
+            </div>
+
+            <!-- Botão de Submissão -->
+            <button type="submit" class="py-3 px-4 inline-flex items-center mt-5 gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none">Cadastrar</button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Script para adicionar dinamicamente itens -->
+      <script>
+        function adicionarItem() {
+          const container = document.createElement('div');
+          container.innerHTML = `
+            <input type="text" name="itens[].nome" placeholder="Nome do item"
+                   class="w-full border-gray-300 rounded-lg focus:ring-blue-500 mb-2" />
+            <button type="button" onclick="this.closest('div').remove()" class="text-red-600 text-sm">Remover</button>
+          `;
+          document.querySelector('form').insertBefore(container, event.target);
+        }
+      </script>
+      
+      <!-- CSRF Token -->
+      <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
+    </main>
+  </body>
+</html>
